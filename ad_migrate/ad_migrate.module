@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Contains company_migrate.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function company_migrate_help($route_name, RouteMatchInterface $route_match) {
+    switch ($route_name) {
+        // Main module help for the custom_user_migrate module.
+        case 'help.page.company_migrate':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('Company Migrate') . '</p>';
+            return $output;
+    }
+}
+
+/**
+ * Implements hook_migration_plugins_alter().
+ */
+function teacher_migrate_migration_plugins_alter(&$definitions) {
+    $definitions['company']['source']['path'] =
+        drupal_get_path('module', 'ad_migrate') . $definitions['company']['source']['path'];
+    $definitions['logo']['source']['path'] =
+        drupal_get_path('module', 'ad_migrate') . $definitions['logo']['source']['path'];
+}

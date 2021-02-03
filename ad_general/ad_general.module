@@ -1,0 +1,51 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Render\Markup;
+
+// Form alter points to a custom form validate
+function ad_general_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    if(($form_id == 'node_company_form')||($form_id == 'node_company_edit_form')) {
+        $form['#validate'][] = '_ad_general_custom_form_validate';
+        }
+}
+
+//form validation
+function _ad_general_custom_form_validate(array &$form, &$form_state)
+{
+    // Assert the email is valid
+    if  (!\Drupal::service('email.validator')->isValid($form_state->getValue('field_contact_email')[0]['value']) || empty($form_state->getValue('field_contact_email')[0]['value']) || strpos(($form_state->getValue('field_contact_email')[0]['value']), 'no-reply'  )) {
+        $form_state->setErrorByName('field_contact_email', t('Please insert correct email!'));
+    }
+    // Assert the website is valid
+    if (!$form_state->getValue(['field_website']) || empty($form_state->getValue(['field_website']))) {
+        drupal_set_message(t('Please consider adding a website for your company. It’s not mandatory, but it’s a good way of showing people what you do.'), 'warning');
+    }
+}
+
+// Implementing hook_mail()
+function ad_general_mail($key, &$message, $params) {
+    // E-mail formatting will be exactly as below, so do not use indenting!
+    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+    $link = '<a href = "://' . $params['event_link'] . '">' . $params['event_name'] . '</a>';
+    $message['subject'] = $params['name'] . " invited you to " . $link  . " Event link ";
+    $body = "Check out this event by " . $params['organizer']  ."! Event: '". $link . "' See ya!";
+    /*$message['body'][] = Drupal\Core\Mail\MailFormatHelper::htmlToText($body);*/////this sends plain text mail
+    $message['body'][] = SafeMarkup::checkPlain($body);  ///this encodes the mail as html, but its deprecated
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

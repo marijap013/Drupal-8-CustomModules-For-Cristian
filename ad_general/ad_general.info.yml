@@ -1,0 +1,5 @@
+name: AD General
+description: 'AD general module - Custom form, custom form validations, and mail sender.'
+type: module
+core: 8.x
+package: AD Custom

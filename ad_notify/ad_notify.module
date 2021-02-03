@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains ad_notify.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ad_notify_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ad_notify module.
+    case 'help.page.ad_notify':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module for notifing users about new events.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

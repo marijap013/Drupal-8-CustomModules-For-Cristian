@@ -1,0 +1,14 @@
+name: Ad migrate
+description: 'With this module we will import company nodes with a simple csv file.'
+type: module
+core: 8.x
+package: AD Custom
+dependencies:
+- migrate
+- migrate_plus
+- migrate_source_csv
+- migrate_tools
+- node
+
+
+

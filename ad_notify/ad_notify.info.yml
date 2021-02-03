@@ -1,0 +1,9 @@
+name: ad_notify
+type: module
+description: Module for notifing users about new events.
+core: 8.x
+package: Custom
+dependencies:
+  - node
+  - block
+

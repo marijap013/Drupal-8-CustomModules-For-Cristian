@@ -1,0 +1,51 @@
+uuid: 5c12fdab-6767-485e-933c-fd17ed554b27
+langcode: en
+dependencies:
+  module:
+    - migrate_source_csv
+id: company
+migration_tags:
+  - CSV
+label: company
+source:
+  plugin: csv
+  path: sites/all/modules/custom/ad_migrate/config/companies.csv
+  header_row_count: 1
+  keys:
+    - nid
+  column_names:
+    0:
+      nid: 'nid'
+    1:
+      title: 'title'
+    2:
+      description: 'Description'
+    3:
+      phone: 'Phone'
+    4:
+      mail: 'Email'
+    5:
+      logo: 'logo'
+    6:
+      adress: 'adress'
+    7:
+      industry: 'industry'
+process:
+  type:
+    plugin: default_value
+    default_value: company
+  title: title
+  field_description: description
+  field_phone_number: phone
+  field_contact_email: email
+  field_adress: adress
+  field_industry:
+        plugin: skip_on_empty
+        method: process
+        source: tid
+destination:
+  plugin: 'entity:node'
+  default_bundle: company
+migration_dependencies:
+  optional:
+    - logo

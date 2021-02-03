@@ -1,0 +1,16 @@
+ad_general.my_page:
+  path: '/mypage'
+  defaults:
+    _controller: '\Drupal\ad_general\Controller\ad_generalController::content'
+    _title: 'My First Drupal 8 module'
+  requirements:
+    _permission: 'access content'
+
+
+ad_general_contribute:
+  path: 'ad_general/contribute'
+  defaults:
+    _form: '\Drupal\ad_general\Form\ContributeForm'
+    _title: 'Conribute page'
+  requirements:
+    _permission: 'access content'

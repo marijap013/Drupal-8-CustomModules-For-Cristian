@@ -1,0 +1,37 @@
+id: logo
+status: true
+label: Logo Image Migration
+dependencies:
+    enforced:
+        module:
+            - ad_migrate
+source:
+  plugin: csv
+  track_changes: true
+  path: /config/companies.csv
+  header_row_count: 1
+  keys:
+    - unique_id
+destination:
+  plugin: entity:file
+  source_path_property: filepath
+  urlencode: true
+  destination_path_property: uri
+process:
+  filename:
+    -
+      plugin: get
+      source: filename
+    -
+      plugin: skip_on_empty
+      method: row
+  uri:
+    plugin: file_copy
+    source:
+     - filepath
+     - uri
+  filemime: filemime
+  status: status
+  uid:
+    plugin: default_value
+    default_value: 1

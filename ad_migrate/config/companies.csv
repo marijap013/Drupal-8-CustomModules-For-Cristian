@@ -1,0 +1,4 @@
+nid,title,description,phone_number,email,init,filename,filepath,uri,filename,adress,tid
+112,title1,Description 1,111111111,bo@example1.com,bo@example1.com,Wikimedia-logo.png,https://upload.wikimedia.org/wikipedia/commons/5/53/Wikimedia-logo.png,public://ad_migrate/Wikimedia-logo.png,image/jpeg,Verovškova 64a  Ljubljana  1000  Slovenia,1
+113,title2,Description 2,222222222,bb@example2.com,bb@example2.com,Wikimedia-logo.png,https://upload.wikimedia.org/wikipedia/commons/5/53/Wikimedia-logo.png,public://ad_migrate/Wikimedia-logo.png,image/jpeg,Verovškova 64a  Ljubljana  1000  Slovenia,2
+114,title3,Description 3,333333333,bc@example3.com,bc@example3.com,Wikimedia-logo.png,https://upload.wikimedia.org/wikipedia/commons/5/53/Wikimedia-logo.png,public://ad_migrate/Wikimedia-logo.png,image/jpeg,Verovškova 64a  Ljubljana  1000  Slovenia,3
